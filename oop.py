@@ -1,5 +1,8 @@
 # Object-Oriented Programming (OOP) in Python
 # OOP is a programming paradigm that organizes code into objects, which are instances of classes. A class is a blueprint for creating objects, and it defines the properties (attributes) and behaviors (methods) that the objects will have.
+from qrcode import make
+
+
 class User:
   def __init__(self,username, email, password):
     self.username = username
@@ -121,5 +124,46 @@ class EmailService:
     print("Disconnecting from email server...")
 
 
-email = EmailService()
-email.sendEmail()
+# email = EmailService()
+# email.sendEmail()
+
+#! Inheritance is a fundamental principle of OOP that allows a new class (called a child or subclass) to inherit properties and behaviors from an existing class (called a parent or superclass). This promotes code reusability and establishes a natural hierarchical relationship between classes.
+
+class Vehicle:
+  def __init__(self, brand, model, year):
+    self.brand = brand
+    self.model = model
+    self.year = year
+
+  def start_engine(self):
+    print("Engine started....")
+
+  def stop_engine(self):
+    print("Engine stopped!")
+
+class Car(Vehicle):
+  def __init__(self, brand, model, year, num_doors, num_wheels=4):
+    super().__init__(brand, model, year)
+    self.num_doors = num_doors
+    self.num_wheels = num_wheels
+
+  def honk(self):
+    print("Honk! Honk!")
+
+class Bike(Vehicle):
+  def __init__(self, brand, model, year, has_pedals=False, num_wheels=2):
+    super().__init__(brand, model, year)
+    self.has_pedals = has_pedals
+    self.num_wheels = num_wheels
+
+  def ring_bell(self):
+    print("Ring! Ring!")
+
+# car = Car("Toyota", "Camry", 2020, 4)
+car = Car("Toyota", "Camry", 2020, 4)
+
+# bike = Bike("Trek", "Marlin 7", 2021, has_pedals=True)
+bike = Bike("Trek", "Marlin 7", 2021, has_pedals=True)
+
+print(car.__dict__)
+print(bike.__dict__)
