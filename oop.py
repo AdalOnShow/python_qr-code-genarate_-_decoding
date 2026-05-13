@@ -165,5 +165,37 @@ car = Car("Toyota", "Camry", 2020, 4)
 # bike = Bike("Trek", "Marlin 7", 2021, has_pedals=True)
 bike = Bike("Trek", "Marlin 7", 2021, has_pedals=True)
 
-print(car.__dict__)
-print(bike.__dict__)
+# print(car.__dict__)
+# print(bike.__dict__)
+
+#! Polymorphism is the ability of different classes to be treated as instances of the same class through a common interface. In the context of OOP, it allows us to use a single interface to represent different underlying data types or classes. In the example above, both Car and Bike classes inherit from the Vehicle class, and they can be treated as instances of Vehicle. This means we can call the start_engine method on both Car and Bike objects, even though they are different types of vehicles. This is an example of polymorphism in action.
+
+class Motorcycle:
+  def __init__(self, brand, model, year):
+    self.brand = brand
+    self.model = model
+    self.year = year
+
+  def start_bike(self):
+    print("Motorcycle engine started...")
+
+  def stop_bike(self):
+    print("Motorcycle engine stopped!")
+
+# create a list of vehicles
+vehicles =[
+  Car("Toyota", "Camry", 2020, 4),
+  Motorcycle("Harley-Davidson", "Street 750", 2021)
+]
+# loop through the list and call the start_engine method on each vehicle
+for vehicle in vehicles:
+  if isinstance(vehicle, Car):
+    print(f"Inspecting car: {vehicle.brand} {vehicle.model}")
+    vehicle.start_engine()
+    vehicle.honk()
+  elif isinstance(vehicle, Motorcycle):
+    print(f"Inspecting motorcycle: {vehicle.brand} {vehicle.model}")
+    vehicle.start_bike()
+    vehicle.stop_bike()
+  else:
+    print(f"Unknown vehicle type: {vehicle.brand} {vehicle.model}")
