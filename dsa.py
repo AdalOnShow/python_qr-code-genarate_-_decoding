@@ -42,16 +42,14 @@ class SinglyLinkedList:
             self.head = temp
 
     def delete_at_position(self, pos):
-        t1 = self.head
-        prev = t1
-        while t1 != None:
-            if t1.info == pos:
-                prev.next = t1.next
-                del t1
-                break
+        if self.head != None:
+            if pos == 1:
+                self.head = self.head.next
             else:
-                prev = t1
-                t1 = t1.next
+                t1 = self.head
+                for i in range(1, pos - 1):
+                    t1 = t1.next
+                t1.next = t1.next.next
 
     def print_list(self):
         t1 = self.head
