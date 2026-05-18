@@ -18,6 +18,29 @@ class SinglyLinkedList:
         else:
             self.head = temp
 
+    def insert_at_beginning(self, value):
+        temp = Node(value)
+        if self.head != None:
+            temp.next = self.head
+            self.head = temp
+        else:
+            self.head = temp
+
+    def insert_at_position(self, value, pos):
+        temp = Node(value)
+        if self.head != None:
+            if pos == 1:
+                temp.next = self.head
+                self.head = temp
+            else:
+                t1 = self.head
+                for i in range(1, pos - 1):
+                    t1 = t1.next
+                temp.next = t1.next
+                t1.next = temp
+        else:
+            self.head = temp
+
     def print_list(self):
         t1 = self.head
         while t1 != None:
@@ -28,6 +51,5 @@ class SinglyLinkedList:
 obj = SinglyLinkedList()
 obj.insert_at_end(10)
 obj.insert_at_end(20)
-obj.insert_at_end(30)
-obj.insert_at_end(40)
+obj.insert_at_beginning(5)
 obj.print_list()
