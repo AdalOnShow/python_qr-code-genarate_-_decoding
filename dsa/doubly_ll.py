@@ -32,6 +32,30 @@ class DoublyLinkedList:
         self.head.prev = temp
         self.head = temp
 
+    def insert_at_position(self, value, position):
+        temp = Node(value)
+        if position == 0:
+            self.insert_at_beginning(value)
+            return
+
+        curr = self.head
+        count = 0
+        while curr and count < position:
+            curr = curr.next
+            count += 1
+
+        if curr is None:
+            self.insert_at_end(value)
+            return
+
+        temp.prev = curr.prev
+        temp.next = curr
+        if curr.prev:
+            curr.prev.next = temp
+        curr.prev = temp
+        if position == 0:
+            self.head = temp
+
     def print_list(self):
         curr = self.head
         while curr:
@@ -44,5 +68,6 @@ list = DoublyLinkedList()
 list.insert_at_end(10)
 list.insert_at_beginning(5)
 list.insert_at_end(20)
+list.insert_at_position(15, 2)
 list.insert_at_end(30)
 list.print_list()
