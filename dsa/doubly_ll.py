@@ -22,9 +22,27 @@ class DoublyLinkedList:
         curr.next = temp
         temp.prev = curr
 
+    def insert_at_beginning(self, value):
+        temp = Node(value)
+        if self.head is None:
+            self.head = temp
+            return
+
+        temp.next = self.head
+        self.head.prev = temp
+        self.head = temp
+
     def print_list(self):
         curr = self.head
         while curr:
-            print(curr.data, end=' ')
+            print(curr.data, end=" <-> ")
             curr = curr.next
         print()
+
+
+list = DoublyLinkedList()
+list.insert_at_end(10)
+list.insert_at_beginning(5)
+list.insert_at_end(20)
+list.insert_at_end(30)
+list.print_list()
